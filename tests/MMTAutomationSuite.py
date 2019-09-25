@@ -10,23 +10,6 @@ from selenium.webdriver.support import expected_conditions as cond
 from selenium.webdriver.support.ui import WebDriverWait
 
 
-def initialize_chrome_driver():
-    fn = pathlib.Path(__file__).parent / '../resources/chromedriver'
-    driver = webdriver.Chrome(fn)
-    # driver = self.driver
-    driver.implicitly_wait(2)
-    driver.get(Constansts.WEB_URL)
-    driver.implicitly_wait(5)
-    driver.maximize_window()
-    wait = WebDriverWait(driver, 10)
-    # print(source)
-    # print(destination)
-    oneway = driver.find_element_by_xpath(Constansts.ONE_WAY_CHECKBOX)
-    from_place_locator = driver.find_element_by_xpath(Constansts.FROM_CITY_LOCATOR)
-    to_place_locator = driver.find_element_by_xpath(Constansts.TO_CITY_LOCATOR)
-    return driver, from_place_locator, to_place_locator
-
-
 class MMTAutomationSuite():
 
 
@@ -203,6 +186,23 @@ class MMTAutomationSuite():
             print('\n\n' + destination + ' city is currently not available in listing')
             driver.close()
             exit()
+
+    def initialize_chrome_driver(self):
+        fn = pathlib.Path(__file__).parent / '../resources/chromedriver'
+        driver = webdriver.Chrome(fn)
+        # driver = self.driver
+        driver.implicitly_wait(2)
+        driver.get(Constansts.WEB_URL)
+        driver.implicitly_wait(5)
+        driver.maximize_window()
+        wait = WebDriverWait(driver, 10)
+        # print(source)
+        # print(destination)
+        oneway = driver.find_element_by_xpath(Constansts.ONE_WAY_CHECKBOX)
+        from_place_locator = driver.find_element_by_xpath(Constansts.FROM_CITY_LOCATOR)
+        to_place_locator = driver.find_element_by_xpath(Constansts.TO_CITY_LOCATOR)
+        return driver, from_place_locator, to_place_locator
+
 
     def take_valid_user_inputs(self):
 
